@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../ConstructionAppClient/ConstructionAppClient.csproj" Id="9341d8f2-b640-4e00-8f4e-79437bbcfcce" />
+  <Project Path="ConstructionAppServer.csproj" />
+</Solution>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../ConstructionApp.Shared/ConstructionApp.Shared.csproj" Id="f36724f1-b756-46c1-a24b-e25fe52521de" />
+  <Project Path="../ConstructionAppClient/ConstructionAppClient.csproj" Id="9341d8f2-b640-4e00-8f4e-79437bbcfcce" />
+  <Project Path="ConstructionAppServer.csproj" />
+</Solution>
