@@ -10,6 +10,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSignalR();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<DatabaseManager>();
+builder.Services.AddScoped<SiteService>();
 
 
 

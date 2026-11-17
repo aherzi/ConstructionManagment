@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConstructionApp.Shared    
 {
-    internal class Worker:User
+    public class Worker:User
     {
+        public int WorkerID { get; set; }
         string companyname;
     }
 }

@@ -2,6 +2,7 @@
 using System.Data.OleDb;
 using ConstructionApp.Shared;
 namespace ConstructionAppServer
+
 {
 
     public class DatabaseManager
@@ -98,6 +99,57 @@ namespace ConstructionAppServer
                 }
             }
 
+        }
+        public Boolean CreateSite(Site site)
+        {
+            using (OleDbConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "INSERT INTO Site ([SiteID], [OwnerID], [ContractorID],[SiteName],[Address],[StartDate],[EstimatedCompletionDate],[Zoning],[Description],[DateCreated]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@SiteID", site.SiteID);
+                    //command.Parameters.AddWithValue("@OwnerID", site.OwnerID);
+                    command.Parameters.AddWithValue("@ContractorID", site.contractor.ContractorID);
+                    command.Parameters.AddWithValue("@SiteName", site.SiteName);
+                    command.Parameters.AddWithValue("@Address", site.Address);
+                    command.Parameters.AddWithValue("@StartDate", site.StartDate);
+                    command.Parameters.AddWithValue("@EstimatedCompletionDate", site.EstimatedCompletionDate);
+                    command.Parameters.AddWithValue("@Zoning", site.zoning);
+                    command.Parameters.AddWithValue("@Description", site.Description);
+                    command.Parameters.AddWithValue("@DateCreated", site.DateCreated);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        public Contractor GetContractor(User user)
+        {
+
+            using (OleDbConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT UserAccount.*, Contractor.ContractorID FROM UserAccount INNER JOIN Contractor     ON UserAccount.UserID = Contractor.UserID WHERE UserAccount.UserID = ?";
+
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", user.userid);
+
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Contractor
+                            {
+                                ContractorID = Convert.ToInt32(reader["ContractorID"])
+                            };
+                        }
+
+                        return null;
+                    }
+                }
+            }
         }
     }
 }

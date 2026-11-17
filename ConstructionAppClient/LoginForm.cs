@@ -45,14 +45,15 @@ namespace ConstructionAppClient
                 {
                     if (role == 0)
                     {
-                        ContractorDashboard contractordb = new ContractorDashboard();
+                       Contractor loggedinContractor = await signalRClient.GetContractorAsync(user);
+                        ContractorDashboard contractordb = new ContractorDashboard(loggedinContractor);
                         contractordb.Show();
                         this.Hide();
                         
                     }
                     else if (role == 1)
                     {
-                        WorkerDashboard workerdb = new WorkerDashboard();
+                        WorkerDashboard workerdb = new WorkerDashboard(user);
                         workerdb.Show();
                         this.Hide();
                     }
