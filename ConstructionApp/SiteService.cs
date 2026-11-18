@@ -1,15 +1,28 @@
 ﻿namespace ConstructionAppServer
 {
     using ConstructionApp.Shared;
+    using Microsoft.AspNetCore.Http.HttpResults;
     using Microsoft.AspNetCore.Mvc;
+    
 
     public class SiteService
     {
-        DatabaseManager dbmanager = new DatabaseManager();
-        public async Task<IActionResult> CreateSite(Site site)
+
+        private readonly DatabaseManager dbmanager;
+        public SiteService(DatabaseManager manager)
         {
-            dbmanager.CreateSite(site);
-            return new OkResult();
+            dbmanager = manager;
+
         }
+        public bool AddSite(Site site)
+        {
+            return dbmanager.CreateSite(site);
+        }
+        public List<Site> GetContractorSites(int contractorId)
+        {
+            return dbmanager.GetContractorSites(contractorId);
+        }
+        }
+        
     }
-}
+

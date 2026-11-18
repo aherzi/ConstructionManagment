@@ -27,6 +27,11 @@ namespace ConstructionAppServer
         {
             return dbmanager.VerifyUser( user);
         }
+        public Contractor? GetContractor(User user)
+        {
+            return dbmanager.GetContractor(user);
+        }
+
         public int GetRole(User user)
         {
             return dbmanager.GetRole(user);

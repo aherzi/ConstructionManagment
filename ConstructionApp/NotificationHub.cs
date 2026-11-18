@@ -36,6 +36,11 @@ namespace ConstructionAppServer
         {
             return UserService.UserVerify(user);
         }
+        public Contractor? GetContractor(User user)
+        {
+            return UserService.GetContractor(user);
+        }
+
         public int GetRole(User user)
         {
             return UserService.GetRole(user);

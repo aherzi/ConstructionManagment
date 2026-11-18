@@ -33,7 +33,6 @@ namespace ConstructionAppClient
             this.lblZoning = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblPropertyOwner = new System.Windows.Forms.Label();
-            this.lblWorkers = new System.Windows.Forms.Label();
             this.lblDesc = new System.Windows.Forms.Label();
             this.txtSiteName = new System.Windows.Forms.TextBox();
             this.txtSiteAddress = new System.Windows.Forms.TextBox();
@@ -43,7 +42,6 @@ namespace ConstructionAppClient
             this.gboxSiteInfo = new System.Windows.Forms.GroupBox();
             this.dtpickerCompletion = new System.Windows.Forms.DateTimePicker();
             this.gboxProjectAssignement = new System.Windows.Forms.GroupBox();
-            this.clboxWorkers = new System.Windows.Forms.CheckedListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gboxAdditionalDetails = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -99,15 +97,6 @@ namespace ConstructionAppClient
             this.lblPropertyOwner.Size = new System.Drawing.Size(150, 28);
             this.lblPropertyOwner.TabIndex = 4;
             this.lblPropertyOwner.Text = "Property Owner";
-            // 
-            // lblWorkers
-            // 
-            this.lblWorkers.AutoSize = true;
-            this.lblWorkers.Location = new System.Drawing.Point(366, 34);
-            this.lblWorkers.Name = "lblWorkers";
-            this.lblWorkers.Size = new System.Drawing.Size(168, 28);
-            this.lblWorkers.TabIndex = 5;
-            this.lblWorkers.Text = "Assigned Workers";
             // 
             // lblDesc
             // 
@@ -187,9 +176,7 @@ namespace ConstructionAppClient
             // gboxProjectAssignement
             // 
             this.gboxProjectAssignement.BackColor = System.Drawing.Color.White;
-            this.gboxProjectAssignement.Controls.Add(this.clboxWorkers);
             this.gboxProjectAssignement.Controls.Add(this.cboxOwner);
-            this.gboxProjectAssignement.Controls.Add(this.lblWorkers);
             this.gboxProjectAssignement.Controls.Add(this.lblPropertyOwner);
             this.gboxProjectAssignement.Location = new System.Drawing.Point(42, 358);
             this.gboxProjectAssignement.Name = "gboxProjectAssignement";
@@ -198,16 +185,6 @@ namespace ConstructionAppClient
             this.gboxProjectAssignement.TabIndex = 1;
             this.gboxProjectAssignement.TabStop = false;
             this.gboxProjectAssignement.Text = "Project Assignment";
-            // 
-            // clboxWorkers
-            // 
-            this.clboxWorkers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.clboxWorkers.FormattingEnabled = true;
-            this.clboxWorkers.IntegralHeight = false;
-            this.clboxWorkers.Location = new System.Drawing.Point(366, 64);
-            this.clboxWorkers.Name = "clboxWorkers";
-            this.clboxWorkers.Size = new System.Drawing.Size(330, 132);
-            this.clboxWorkers.TabIndex = 1;
             // 
             // groupBox3
             // 
@@ -317,7 +294,6 @@ namespace ConstructionAppClient
         private System.Windows.Forms.Label lblZoning;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblPropertyOwner;
-        private System.Windows.Forms.Label lblWorkers;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.TextBox txtSiteName;
         private System.Windows.Forms.TextBox txtSiteAddress;
@@ -333,6 +309,5 @@ namespace ConstructionAppClient
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DateTimePicker dtpickerCompletion;
-        private System.Windows.Forms.CheckedListBox clboxWorkers;
     }
 }

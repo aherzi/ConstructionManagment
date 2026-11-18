@@ -17,9 +17,9 @@ namespace ConstructionAppClient
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblBrand = new System.Windows.Forms.Label();
             this.lblPortal = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@ namespace ConstructionAppClient
             this.lblContractorName = new System.Windows.Forms.Label();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblSites = new System.Windows.Forms.Label();
-            this.btnCreateSite = new System.Windows.Forms.Button();
+            this.l = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,18 +56,21 @@ namespace ConstructionAppClient
             this.lblSelectionHint = new System.Windows.Forms.Label();
             this.btnReviewPendingUpdates = new System.Windows.Forms.Button();
             this.pnlPages = new System.Windows.Forms.Panel();
-            this.pnlMySites = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblMySites = new System.Windows.Forms.Label();
             this.pnlAssignWorkers = new System.Windows.Forms.Panel();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblAssignWorker = new System.Windows.Forms.Label();
             this.btnAssignWorker = new System.Windows.Forms.Button();
-            this.cboxWorkerSelection = new System.Windows.Forms.ComboBox();
+            this.cboxSite = new System.Windows.Forms.ComboBox();
             this.lblChooseWorker = new System.Windows.Forms.Label();
-            this.cboxSiteSelection = new System.Windows.Forms.ComboBox();
+            this.cboxAssignWorker = new System.Windows.Forms.ComboBox();
+            this.pnlMySites = new System.Windows.Forms.Panel();
+            this.lviewSites = new System.Windows.Forms.ListView();
+            this.SiteName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SiteAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CompletitionDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnCreateSite = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblMySites = new System.Windows.Forms.Label();
             this.pnlReviewUpdates = new System.Windows.Forms.Panel();
             this.pnlActions = new System.Windows.Forms.Panel();
             this.btnReject = new System.Windows.Forms.Button();
@@ -91,8 +94,8 @@ namespace ConstructionAppClient
             this.pnlCompletedPhases.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlPages.SuspendLayout();
-            this.pnlMySites.SuspendLayout();
             this.pnlAssignWorkers.SuspendLayout();
+            this.pnlMySites.SuspendLayout();
             this.pnlReviewUpdates.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.pnlUpdateDetails.SuspendLayout();
@@ -251,7 +254,7 @@ namespace ConstructionAppClient
             this.pnlContent.Controls.Add(this.lblContractorName);
             this.pnlContent.Controls.Add(this.lblSubtitle);
             this.pnlContent.Controls.Add(this.lblSites);
-            this.pnlContent.Controls.Add(this.btnCreateSite);
+            this.pnlContent.Controls.Add(this.l);
             this.pnlContent.Controls.Add(this.dataGridView1);
             this.pnlContent.Controls.Add(this.lblSelectionHint);
             this.pnlContent.Controls.Add(this.btnReviewPendingUpdates);
@@ -456,42 +459,42 @@ namespace ConstructionAppClient
             this.lblSites.TabIndex = 3;
             this.lblSites.Text = "My Construction Sites";
             // 
-            // btnCreateSite
+            // l
             // 
-            this.btnCreateSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCreateSite.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCreateSite.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btnCreateSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateSite.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnCreateSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.btnCreateSite.Location = new System.Drawing.Point(726, 310);
-            this.btnCreateSite.Name = "btnCreateSite";
-            this.btnCreateSite.Size = new System.Drawing.Size(182, 38);
-            this.btnCreateSite.TabIndex = 0;
-            this.btnCreateSite.Text = "+ Create Site";
-            this.btnCreateSite.UseVisualStyleBackColor = false;
+            this.l.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.l.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.l.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.l.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.l.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.l.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.l.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.l.Location = new System.Drawing.Point(881, 310);
+            this.l.Name = "l";
+            this.l.Size = new System.Drawing.Size(27, 38);
+            this.l.TabIndex = 0;
+            this.l.Text = "+ Create Site";
+            this.l.UseVisualStyleBackColor = false;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeight = 42;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -500,15 +503,15 @@ namespace ConstructionAppClient
             this.CurrentPhase,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(236)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.dataGridView1.Location = new System.Drawing.Point(28, 362);
@@ -595,9 +598,9 @@ namespace ConstructionAppClient
             // 
             // pnlPages
             // 
+            this.pnlPages.Controls.Add(this.pnlAssignWorkers);
             this.pnlPages.Controls.Add(this.pnlMySites);
             this.pnlPages.Controls.Add(this.pnlContent);
-            this.pnlPages.Controls.Add(this.pnlAssignWorkers);
             this.pnlPages.Controls.Add(this.pnlReviewUpdates);
             this.pnlPages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPages.Location = new System.Drawing.Point(244, 72);
@@ -605,64 +608,14 @@ namespace ConstructionAppClient
             this.pnlPages.Size = new System.Drawing.Size(936, 688);
             this.pnlPages.TabIndex = 0;
             // 
-            // pnlMySites
-            // 
-            this.pnlMySites.Controls.Add(this.listView1);
-            this.pnlMySites.Controls.Add(this.button1);
-            this.pnlMySites.Controls.Add(this.label1);
-            this.pnlMySites.Controls.Add(this.lblMySites);
-            this.pnlMySites.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMySites.Location = new System.Drawing.Point(0, 0);
-            this.pnlMySites.Name = "pnlMySites";
-            this.pnlMySites.Size = new System.Drawing.Size(936, 688);
-            this.pnlMySites.TabIndex = 14;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(11, 134);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(864, 508);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(712, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(209, 50);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "+ Create Site";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 28);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Construction Sites";
-            // 
-            // lblMySites
-            // 
-            this.lblMySites.AutoSize = true;
-            this.lblMySites.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMySites.Location = new System.Drawing.Point(11, 18);
-            this.lblMySites.Name = "lblMySites";
-            this.lblMySites.Size = new System.Drawing.Size(105, 32);
-            this.lblMySites.TabIndex = 0;
-            this.lblMySites.Text = "My Sites";
-            // 
             // pnlAssignWorkers
             // 
             this.pnlAssignWorkers.Controls.Add(this.lblDescription);
             this.pnlAssignWorkers.Controls.Add(this.lblAssignWorker);
             this.pnlAssignWorkers.Controls.Add(this.btnAssignWorker);
-            this.pnlAssignWorkers.Controls.Add(this.cboxWorkerSelection);
+            this.pnlAssignWorkers.Controls.Add(this.cboxSite);
             this.pnlAssignWorkers.Controls.Add(this.lblChooseWorker);
-            this.pnlAssignWorkers.Controls.Add(this.cboxSiteSelection);
+            this.pnlAssignWorkers.Controls.Add(this.cboxAssignWorker);
             this.pnlAssignWorkers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAssignWorkers.Location = new System.Drawing.Point(0, 0);
             this.pnlAssignWorkers.Name = "pnlAssignWorkers";
@@ -674,11 +627,11 @@ namespace ConstructionAppClient
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.lblDescription.Location = new System.Drawing.Point(6, 64);
+            this.lblDescription.Location = new System.Drawing.Point(6, 84);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(351, 28);
+            this.lblDescription.Size = new System.Drawing.Size(126, 28);
             this.lblDescription.TabIndex = 13;
-            this.lblDescription.Text = "Assign a worker to a contractor site";
+            this.lblDescription.Text = "Select a site";
             // 
             // lblAssignWorker
             // 
@@ -706,38 +659,108 @@ namespace ConstructionAppClient
             this.btnAssignWorker.Text = "Assign Worker";
             this.btnAssignWorker.UseVisualStyleBackColor = false;
             // 
-            // cboxWorkerSelection
+            // cboxSite
             // 
-            this.cboxWorkerSelection.BackColor = System.Drawing.Color.White;
-            this.cboxWorkerSelection.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboxWorkerSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.cboxWorkerSelection.FormattingEnabled = true;
-            this.cboxWorkerSelection.Location = new System.Drawing.Point(6, 206);
-            this.cboxWorkerSelection.Name = "cboxWorkerSelection";
-            this.cboxWorkerSelection.Size = new System.Drawing.Size(186, 36);
-            this.cboxWorkerSelection.TabIndex = 10;
+            this.cboxSite.BackColor = System.Drawing.Color.White;
+            this.cboxSite.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboxSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.cboxSite.FormattingEnabled = true;
+            this.cboxSite.Location = new System.Drawing.Point(19, 130);
+            this.cboxSite.Name = "cboxSite";
+            this.cboxSite.Size = new System.Drawing.Size(186, 36);
+            this.cboxSite.TabIndex = 10;
             // 
             // lblChooseWorker
             // 
             this.lblChooseWorker.AutoSize = true;
             this.lblChooseWorker.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblChooseWorker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.lblChooseWorker.Location = new System.Drawing.Point(1, 165);
+            this.lblChooseWorker.Location = new System.Drawing.Point(14, 188);
             this.lblChooseWorker.Name = "lblChooseWorker";
             this.lblChooseWorker.Size = new System.Drawing.Size(155, 28);
             this.lblChooseWorker.TabIndex = 9;
             this.lblChooseWorker.Text = "Choose Worker";
             // 
-            // cboxSiteSelection
+            // cboxAssignWorker
             // 
-            this.cboxSiteSelection.BackColor = System.Drawing.Color.White;
-            this.cboxSiteSelection.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboxSiteSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.cboxSiteSelection.FormattingEnabled = true;
-            this.cboxSiteSelection.Location = new System.Drawing.Point(6, 95);
-            this.cboxSiteSelection.Name = "cboxSiteSelection";
-            this.cboxSiteSelection.Size = new System.Drawing.Size(186, 36);
-            this.cboxSiteSelection.TabIndex = 8;
+            this.cboxAssignWorker.BackColor = System.Drawing.Color.White;
+            this.cboxAssignWorker.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboxAssignWorker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.cboxAssignWorker.FormattingEnabled = true;
+            this.cboxAssignWorker.Location = new System.Drawing.Point(17, 223);
+            this.cboxAssignWorker.Name = "cboxAssignWorker";
+            this.cboxAssignWorker.Size = new System.Drawing.Size(186, 36);
+            this.cboxAssignWorker.TabIndex = 8;
+            // 
+            // pnlMySites
+            // 
+            this.pnlMySites.Controls.Add(this.lviewSites);
+            this.pnlMySites.Controls.Add(this.btnCreateSite);
+            this.pnlMySites.Controls.Add(this.label1);
+            this.pnlMySites.Controls.Add(this.lblMySites);
+            this.pnlMySites.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMySites.Location = new System.Drawing.Point(0, 0);
+            this.pnlMySites.Name = "pnlMySites";
+            this.pnlMySites.Size = new System.Drawing.Size(936, 688);
+            this.pnlMySites.TabIndex = 14;
+            // 
+            // lviewSites
+            // 
+            this.lviewSites.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SiteName,
+            this.SiteAddress,
+            this.CompletitionDate});
+            this.lviewSites.HideSelection = false;
+            this.lviewSites.Location = new System.Drawing.Point(11, 134);
+            this.lviewSites.Name = "lviewSites";
+            this.lviewSites.Size = new System.Drawing.Size(864, 508);
+            this.lviewSites.TabIndex = 3;
+            this.lviewSites.UseCompatibleStateImageBehavior = false;
+            this.lviewSites.View = System.Windows.Forms.View.Details;
+            // 
+            // SiteName
+            // 
+            this.SiteName.Text = "Site Name";
+            this.SiteName.Width = 272;
+            // 
+            // SiteAddress
+            // 
+            this.SiteAddress.Text = "Site Address";
+            this.SiteAddress.Width = 313;
+            // 
+            // CompletitionDate
+            // 
+            this.CompletitionDate.Text = "Estimated Completion Date";
+            this.CompletitionDate.Width = 587;
+            // 
+            // btnCreateSite
+            // 
+            this.btnCreateSite.Location = new System.Drawing.Point(712, 49);
+            this.btnCreateSite.Name = "btnCreateSite";
+            this.btnCreateSite.Size = new System.Drawing.Size(209, 50);
+            this.btnCreateSite.TabIndex = 2;
+            this.btnCreateSite.Text = "+ Create Site";
+            this.btnCreateSite.UseVisualStyleBackColor = true;
+            this.btnCreateSite.Click += new System.EventHandler(this.btnCreateSite_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(170, 28);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Construction Sites";
+            // 
+            // lblMySites
+            // 
+            this.lblMySites.AutoSize = true;
+            this.lblMySites.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMySites.Location = new System.Drawing.Point(11, 18);
+            this.lblMySites.Name = "lblMySites";
+            this.lblMySites.Size = new System.Drawing.Size(105, 32);
+            this.lblMySites.TabIndex = 0;
+            this.lblMySites.Text = "My Sites";
             // 
             // pnlReviewUpdates
             // 
@@ -863,6 +886,7 @@ namespace ConstructionAppClient
             this.Name = "ContractorDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Construction Manager | Contractor Dashboard";
+            this.Load += new System.EventHandler(this.ContractorDashboard_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlSidebar.ResumeLayout(false);
             this.pnlContent.ResumeLayout(false);
@@ -873,10 +897,10 @@ namespace ConstructionAppClient
             this.pnlCompletedPhases.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlPages.ResumeLayout(false);
-            this.pnlMySites.ResumeLayout(false);
-            this.pnlMySites.PerformLayout();
             this.pnlAssignWorkers.ResumeLayout(false);
             this.pnlAssignWorkers.PerformLayout();
+            this.pnlMySites.ResumeLayout(false);
+            this.pnlMySites.PerformLayout();
             this.pnlReviewUpdates.ResumeLayout(false);
             this.pnlReviewUpdates.PerformLayout();
             this.pnlActions.ResumeLayout(false);
@@ -918,7 +942,7 @@ namespace ConstructionAppClient
         private System.Windows.Forms.Label lblCompletedPhasesValue;
         private System.Windows.Forms.Label lblCompletedPhases;
         private System.Windows.Forms.Label lblSites;
-        private System.Windows.Forms.Button btnCreateSite;
+        private System.Windows.Forms.Button l;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -930,17 +954,17 @@ namespace ConstructionAppClient
         private System.Windows.Forms.Label lblContractorName;
         private System.Windows.Forms.Panel pnlAssignWorkers;
         private System.Windows.Forms.Button btnAssignWorker;
-        private System.Windows.Forms.ComboBox cboxWorkerSelection;
+        private System.Windows.Forms.ComboBox cboxSite;
         private System.Windows.Forms.Label lblChooseWorker;
-        private System.Windows.Forms.ComboBox cboxSiteSelection;
+        private System.Windows.Forms.ComboBox cboxAssignWorker;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblAssignWorker;
         private System.Windows.Forms.Panel pnlMySites;
         private System.Windows.Forms.Label lblMySites;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateSite;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lviewSites;
         private System.Windows.Forms.Panel pnlReviewUpdates;
         private System.Windows.Forms.Panel pnlUpdateDetails;
         private System.Windows.Forms.Panel pnlUpdateList;
@@ -953,5 +977,8 @@ namespace ConstructionAppClient
         private System.Windows.Forms.Button btnReject;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ColumnHeader SiteName;
+        private System.Windows.Forms.ColumnHeader SiteAddress;
+        private System.Windows.Forms.ColumnHeader CompletitionDate;
     }
 }

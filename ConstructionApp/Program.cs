@@ -11,10 +11,13 @@ builder.Services.AddSignalR();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<DatabaseManager>();
 builder.Services.AddScoped<SiteService>();
-
-
+builder.Services.AddScoped<ContractorService>();
 
 var app = builder.Build();
+
+app.Logger.LogInformation("Using Access database: {DatabasePath}",
+    Path.GetFullPath(builder.Configuration["Database:Path"]
+        ?? Path.Combine(app.Environment.ContentRootPath, "Construction_Management_DB.accdb"), app.Environment.ContentRootPath));
 
 app.MapHub<NotificationHub>("/notificationHub");
 
