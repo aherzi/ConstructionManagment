@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace ConstructionApp.Shared
 {
-    internal class Contractor:User
+    public class Contractor:User
     {
+        public int ContractorID { get; set; }
         string companyname;
-
-
         
+      
+
+
+
     }
+
 }

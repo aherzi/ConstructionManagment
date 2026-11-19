@@ -13,9 +13,13 @@ namespace ConstructionAppClient
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private readonly WorkerApiClient workerApiClient;
+
+        public LoginForm(WorkerApiClient workerapiclient)
         {
             InitializeComponent();
+            workerApiClient = workerapiclient;
+            
             
         }
 
@@ -39,20 +43,26 @@ namespace ConstructionAppClient
                     
                 };
                 bool success = await signalRClient.VerifyAsync(user);
-                int role = await signalRClient.GetRole(user);
 
                 if (success)
                 {
+                    int role = await signalRClient.GetRole(user);
                     if (role == 0)
                     {
-                        ContractorDashboard contractordb = new ContractorDashboard();
+                       Contractor loggedinContractor = await signalRClient.GetContractorAsync(user);
+                        if (loggedinContractor == null)
+                        {
+                            MessageBox.Show("No contractor record is linked to this account.");
+                            return;
+                        }
+                        ContractorDashboard contractordb = new ContractorDashboard(loggedinContractor,workerApiClient);
                         contractordb.Show();
                         this.Hide();
                         
                     }
                     else if (role == 1)
                     {
-                        WorkerDashboard workerdb = new WorkerDashboard();
+                        WorkerDashboard workerdb = new WorkerDashboard(user);
                         workerdb.Show();
                         this.Hide();
                     }

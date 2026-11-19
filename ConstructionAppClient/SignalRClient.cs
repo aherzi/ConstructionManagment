@@ -70,6 +70,15 @@ namespace ConstructionAppClient
             return await connection.InvokeAsync<bool>("VerifyUser", user);
 
         }
+        public async Task<Contractor> GetContractorAsync(User user)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException("SignalR connection is not active.");
+            }
+            return await connection.InvokeAsync<Contractor>("GetContractor", user);
+        }
+
         public async Task<int> GetRole(User user)
         {
             if (connection.State != HubConnectionState.Connected)
