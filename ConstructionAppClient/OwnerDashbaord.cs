@@ -13,23 +13,13 @@ using SkiaSharp;
 
 namespace ConstructionAppClient
 {
-    public class PhaseStatusRow
-    {
-        public string Stage { get; set; }
-        public string Start { get; set; }
-        public string End { get; set; }
-        public int ActualPercent { get; set; }
-        public int ExpectedPercent { get; set; }
-        public string Status { get; set; }
-    }
-
-    public partial class DashboardForm : Form
+    public partial class OwnerDashbaord : Form
     {
         private SignalRClient signalRClient;
         private PieChart pieChart;
         private CartesianChart barChart;
 
-        public DashboardForm()
+        public OwnerDashbaord(User user)
         {
             InitializeComponent();
 
@@ -50,7 +40,7 @@ namespace ConstructionAppClient
                 signalRClient = new SignalRClient();
                 await signalRClient.ConnectAsync();
 
-                List<ConstructionSite> sites = await signalRClient.GetAllSitesAsync();
+                List<Site> sites = await signalRClient.GetAllSitesAsync();
                 cmbSite.DisplayMember = "SiteName";
                 cmbSite.ValueMember = "SiteID";
                 cmbSite.DataSource = sites;
@@ -78,18 +68,18 @@ namespace ConstructionAppClient
 
         private async Task LoadDashboard()
         {
-            ConstructionSite site = cmbSite.SelectedItem as ConstructionSite;
+            Site site = cmbSite.SelectedItem as Site;
             if (site == null)
             {
-                ShowPhases(new List<ConstructionPhase>());
+                ShowPhases(new List<Phase>());
                 return;
             }
-            List<ConstructionPhase> phases = await signalRClient.GetPhasesBySiteAsync(site.SiteID);
+            List<Phase> phases = await signalRClient.GetPhasesBySiteAsync(site.SiteID);
             ShowPhases(phases);
         }
 
         // How far along this phase SHOULD be today, based on its planned dates.
-        private static int ExpectedPercent(ConstructionPhase p)
+        private static int ExpectedPercent(Phase p)
         {
             DateTime today = DateTime.Today;
             if (today <= p.PlannedStart.Date) return 0;
@@ -101,25 +91,25 @@ namespace ConstructionAppClient
         }
 
         // Delayed = actual is more than 10 points behind expected.
-        private static string StatusFor(ConstructionPhase p, int expected)
+        private static string StatusFor(Phase p, int expected)
         {
             if (p.PercentComplete >= 100) return "Complete";
             if (DateTime.Today < p.PlannedStart.Date) return "Not started";
             return p.PercentComplete < expected - 10 ? "Delayed" : "On track";
         }
 
-        private void ShowPhases(List<ConstructionPhase> phases)
+        private void ShowPhases(List<Phase> phases)
         {
             List<PhaseStatusRow> rows = new List<PhaseStatusRow>();
-            foreach (ConstructionPhase p in phases)
+            foreach (Phase p in phases)
             {
                 int expected = ExpectedPercent(p);
                 rows.Add(new PhaseStatusRow
                 {
-                    Stage = p.Stage,
+                    Stage = p.stage.ToString(),
                     Start = p.PlannedStart.ToShortDateString(),
                     End = p.PlannedEnd.ToShortDateString(),
-                    ActualPercent = p.PercentComplete,
+                    ActualPercent = Convert.ToInt16(p.PercentComplete),
                     ExpectedPercent = expected,
                     Status = StatusFor(p, expected)
                 });
@@ -194,5 +184,15 @@ namespace ConstructionAppClient
                 new Axis { MinLimit = 0, MaxLimit = 100 }
             };
         }
+    }
+
+    public class PhaseStatusRow
+    {
+        public string Stage { get; set; }
+        public string Start { get; set; }
+        public string End { get; set; }
+        public int ActualPercent { get; set; }
+        public int ExpectedPercent { get; set; }
+        public string Status { get; set; }
     }
 }

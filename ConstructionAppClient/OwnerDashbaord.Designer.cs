@@ -1,6 +1,6 @@
 ﻿namespace ConstructionAppClient
 {
-    partial class DashboardForm
+    partial class OwnerDashbaord
     {
         /// <summary>
         /// Required designer variable.

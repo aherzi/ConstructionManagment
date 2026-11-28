@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,6 +87,75 @@ namespace ConstructionAppClient
                     "SignalR connection is not active.");
             }
             return await connection.InvokeAsync<int>("GetRole", user);
+        }
+        public async Task<List<Site>> GetAllSitesAsync()
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException(
+                    "SignalR connection is not active.");
+            }
+
+            return await connection.InvokeAsync<List<Site>>(
+                "GetAllSites");
+        }
+
+        public async Task<List<Phase>> GetPhasesBySiteAsync(int siteId)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException(
+                    "SignalR connection is not active.");
+            }
+
+            return await connection.InvokeAsync<List<Phase>>(
+                "GetPhasesBySite", siteId);
+        }
+
+        public async Task<bool> AddPhaseAsync(Phase phase)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException(
+                    "SignalR connection is not active.");
+            }
+
+            return await connection.InvokeAsync<bool>(
+                "AddPhase", phase);
+        }
+
+        public async Task<bool> UpdatePhaseAsync(Phase phase)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException(
+                    "SignalR connection is not active.");
+            }
+
+            return await connection.InvokeAsync<bool>(
+                "UpdatePhase", phase);
+        }
+
+        public async Task<bool> AssignWorkerToSiteAsync(User user,
+            int siteId, int workerId)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException(
+                    "SignalR connection is not active.");
+            }
+
+           return await connection.InvokeAsync<bool>(
+                "AssignWorkerToSite", user,siteId, workerId);
+        }
+
+        public async Task<List<AssignedSite>> GetAssignedSitesAsync(User user)
+        {
+            if (connection.State != HubConnectionState.Connected)
+            {
+                throw new InvalidOperationException("SignalR connection is not active. Please sign in again.");
+            }
+            return await connection.InvokeAsync<List<AssignedSite>>("GetAssignedSites", user);
         }
     }
     }

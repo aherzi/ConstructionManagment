@@ -15,3 +15,9 @@ The server uses Microsoft Access through the Microsoft.ACE.OLEDB.16.0 provider a
 ## Run
 
 Start the server and the Windows Forms client from Visual Studio. Configure their startup projects as needed.
+
+## Property owners when creating a site
+
+Close Microsoft Access and stop the server, then run `ConstructionApp/Initialize-OwnerSchema.ps1` in Windows PowerShell. The script uses the database path in `appsettings.json` (or accepts `-DatabasePath`), backs up the database before making changes, and adds missing `Owner.OwnerID` (AutoNumber), `Owner.UserID`, and `Site.OwnerID` fields. It does not create owner records for existing login accounts.
+
+New accounts registered with the Owner role create a linked Owner record in the same transaction as their login account. The contractor's Create Site form loads usernames from `GET /api/owners`, requires an owner selection, and saves that owner's ID with the site. Existing accounts without an Owner row are not included.

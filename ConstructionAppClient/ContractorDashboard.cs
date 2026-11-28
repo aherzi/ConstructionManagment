@@ -16,13 +16,15 @@ namespace ConstructionAppClient
     {
         private SignalRClient signalRClient;
         private readonly Contractor loggedinContractor;
+        private readonly User user;
         private readonly WorkerApiClient workerApiClient;
         private readonly SiteApiClient siteapiclient;
 
 
-        public ContractorDashboard(Contractor contractor,WorkerApiClient workerapiclient)
+        public ContractorDashboard(Contractor contractor,WorkerApiClient workerapiclient,User loggedinUser)
         {
             InitializeComponent();
+            user = loggedinUser;
             workerApiClient = workerapiclient;
             if (contractor == null || contractor.ContractorID <= 0)
                 throw new ArgumentException("A valid logged-in contractor is required.", nameof(contractor));
@@ -31,6 +33,8 @@ namespace ConstructionAppClient
             lblTitle.Text = "Welcome " + (string.IsNullOrWhiteSpace(contractor.firstname) ? contractor.username : contractor.firstname);
             signalRClient = new SignalRClient();
             siteapiclient = new SiteApiClient();
+            BindSiteDropdown(cboxSite, new List<Site>());
+            BindSiteDropdown(cboxSelectSite, new List<Site>());
             Shown += async (sender, args) => await LoadSitesAsync();
             l.Click += btnCreateSite_Click;
         }
@@ -43,9 +47,10 @@ namespace ConstructionAppClient
             ShowPanel(pnlContent);
         }
 
-        private void btnAssignWorkers_Click(object sender, EventArgs e)
+        private async void btnAssignWorkers_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlAssignWorkers);
+            await LoadSitesAsync();
         }
 
         private async void btnMySites_Click(object sender, EventArgs e)
@@ -71,10 +76,10 @@ namespace ConstructionAppClient
             btnReviewUpdates.BackColor = selectedPanel == pnlReviewUpdates ? selectedColor : defaultColor;
         }
 
-        private void btnReviewUpdates_Click(object sender, EventArgs e)
+        private async void btnReviewUpdates_Click(object sender, EventArgs e)
         {
             ShowPanel(pnlReviewUpdates);
-
+            await LoadSitesAsync();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -91,6 +96,8 @@ namespace ConstructionAppClient
                     await siteapiclient.GetContractorSitesAsync(
                         loggedinContractor.ContractorID);
 
+                BindSiteDropdown(cboxSite, sites);
+                BindSiteDropdown(cboxSelectSite, sites);
                 lviewSites.Items.Clear();
 
                 foreach (Site site in sites)
@@ -110,6 +117,20 @@ namespace ConstructionAppClient
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private static void BindSiteDropdown(ComboBox dropdown, List<Site> sites)
+        {
+            Site previousSite = dropdown.SelectedItem as Site;
+            dropdown.DropDownStyle = ComboBoxStyle.DropDownList;
+            dropdown.DisplayMember = "SiteName";
+            dropdown.ValueMember = "SiteID";
+            // Each dropdown needs its own list so their selections stay independent.
+            dropdown.DataSource = new List<Site>(sites);
+            dropdown.Enabled = sites.Count > 0;
+            dropdown.SelectedIndex = -1;
+            if (previousSite != null && sites.Any(site => site.SiteID == previousSite.SiteID))
+                dropdown.SelectedValue = previousSite.SiteID;
         }
 
         private async void btnCreateSite_Click(object sender, EventArgs e)
@@ -135,15 +156,53 @@ namespace ConstructionAppClient
             cboxAssignWorker.DataSource = workers;
             cboxAssignWorker.DisplayMember = "username";
             cboxAssignWorker.ValueMember = "WorkerID";
-            MessageBox.Show(
-    "First worker name: [" + workers[0].firstname + "]");
+            
             //  cboxAssignWorker.SelectedIndex = -1;
         }
        
 
         private async void  ContractorDashboard_Load(object sender, EventArgs e)
         {
-            await LoadWorkersAsync();
+             try
+            {   
+                await signalRClient.ConnectAsync();
+                await LoadWorkersAsync();
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message);
+             }
+        }
+
+        private async void btnAssignWorker_Click(object sender, EventArgs e)
+        {
+            Site site = cboxSite.SelectedItem as Site;
+            Worker worker = cboxAssignWorker.SelectedItem as Worker;
+            
+
+            if (site == null || worker == null)
+            {
+                MessageBox.Show("Select a site and a worker.");
+                return;
+            }
+
+            try
+            {
+               bool success=await signalRClient.AssignWorkerToSiteAsync(
+               user, site.SiteID, worker.WorkerID);
+                if (success)
+                {
+                    MessageBox.Show("Worker was successfully added to the site");
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+
+            }
         }
     }
 }

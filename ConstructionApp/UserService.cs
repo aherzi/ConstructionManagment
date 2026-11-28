@@ -1,4 +1,4 @@
-﻿using ConstructionApp.Shared;
+using ConstructionApp.Shared;
 namespace ConstructionAppServer
 {
     public class UserService
@@ -31,6 +31,14 @@ namespace ConstructionAppServer
         {
             return dbmanager.GetContractor(user);
         }
+        public Worker? GetWorker(int worker)
+        {
+            return dbmanager.GetWorker(worker);
+        }
+        public bool AssignWorker(int siteid,int workerid)
+        {
+            return dbmanager.AssignWorkerToSite(siteid, workerid);
+        }
 
         public int GetRole(User user)
         {
@@ -38,5 +46,13 @@ namespace ConstructionAppServer
         }
 
 
+        public List<AssignedSite> GetAssignedSites(User user)
+        {
+            if (user == null || string.IsNullOrWhiteSpace(user.username) || string.IsNullOrEmpty(user.password))
+            {
+                throw new ArgumentException("Sign in to view your assigned sites.");
+            }
+            return dbmanager.GetAssignedSites(user);
+        }
     }
 }

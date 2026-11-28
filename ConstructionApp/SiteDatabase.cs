@@ -12,7 +12,7 @@ namespace ConstructionAppServer
             this.dbmanager = dbmanager;
         }
 
-        public bool AddSite(ConstructionSite site)
+        public bool AddSite(Site site)
         {
             using (OleDbConnection connection = dbmanager.GetConnection())
             {
@@ -22,17 +22,17 @@ namespace ConstructionAppServer
                 {
                     command.Parameters.AddWithValue("?", site.SiteName);
                     command.Parameters.AddWithValue("?", site.Address);
-                    command.Parameters.AddWithValue("?", site.OwnerID);
-                    command.Parameters.AddWithValue("?", site.ContractorID);
+                    command.Parameters.AddWithValue("?", site.owner.OwnerID);
+                    command.Parameters.AddWithValue("?", site.contractor.ContractorID);
                     command.Parameters.Add("?", OleDbType.Date).Value = site.StartDate;
                     return command.ExecuteNonQuery() > 0;
                 }
             }
         }
 
-        public List<ConstructionSite> GetAllSites()
+        public List<Site> GetAllSites()
         {
-            List<ConstructionSite> sites = new List<ConstructionSite>();
+            List<Site> sites = new List<Site>();
             using (OleDbConnection connection = dbmanager.GetConnection())
             {
                 connection.Open();
@@ -42,12 +42,12 @@ namespace ConstructionAppServer
                 {
                     while (reader.Read())
                     {
-                        ConstructionSite site = new ConstructionSite();
+                        Site site = new Site();
                         site.SiteID = Convert.ToInt32(reader[0]);
                         site.SiteName = reader.IsDBNull(1) ? "" : reader[1].ToString();
                         site.Address = reader.IsDBNull(2) ? "" : reader[2].ToString();
-                        site.OwnerID = reader.IsDBNull(3) ? 0 : Convert.ToInt32(reader[3]);
-                        site.ContractorID = reader.IsDBNull(4) ? 0 : Convert.ToInt32(reader[4]);
+                        site.owner = reader.IsDBNull(3) ? null : new Owner { OwnerID = Convert.ToInt32(reader[3]) };
+                        site.contractor = reader.IsDBNull(4) ? null : new Contractor { ContractorID = Convert.ToInt32(reader[4]) };
                         site.StartDate = reader.IsDBNull(5) ? DateTime.Today : Convert.ToDateTime(reader[5]);
                         sites.Add(site);
                     }

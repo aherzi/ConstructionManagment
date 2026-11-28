@@ -12,6 +12,21 @@ namespace ConstructionAppClient
         
         private static readonly HttpClient   _httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:7071/") };
         
+        public async Task<List<Owner>> GetOwnersAsync()
+        {
+            using (var response = await _httpClient.GetAsync("api/owners"))
+            {
+                response.EnsureSuccessStatusCode();
+                string json = await response.Content.ReadAsStringAsync();
+                List<Owner> owners = System.Text.Json.JsonSerializer.Deserialize<List<Owner>>(
+                    json,
+                    new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                if (owners == null)
+                    return new List<Owner>();
+                return owners;
+            }
+        }
+
         public async Task CreateSiteAsync(Site site)
             
         {

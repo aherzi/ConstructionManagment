@@ -31,7 +31,7 @@ namespace ConstructionAppClient
                 signalRClient = new SignalRClient();
                 await signalRClient.ConnectAsync();
 
-                List<ConstructionSite> sites = await signalRClient.GetAllSitesAsync();
+                List<Site> sites = await signalRClient.GetAllSitesAsync();
                 cmbSite.DisplayMember = "SiteName";
                 cmbSite.ValueMember = "SiteID";
                 cmbSite.DataSource = sites;
@@ -66,7 +66,7 @@ namespace ConstructionAppClient
 
         private async Task LoadPhases()
         {
-            ConstructionSite site = cmbSite.SelectedItem as ConstructionSite;
+            Site site = cmbSite.SelectedItem as Site;
             if (site == null)
             {
                 gridPhases.DataSource = null;
@@ -80,20 +80,20 @@ namespace ConstructionAppClient
         private void gridPhases_SelectionChanged(object sender, EventArgs e)
         {
             if (gridPhases.SelectedRows.Count == 0) return;
-            ConstructionPhase phase = gridPhases.SelectedRows[0].DataBoundItem as ConstructionPhase;
+            Phase phase = gridPhases.SelectedRows[0].DataBoundItem as Phase;
             if (phase == null) return;
 
             selectedPhaseId = phase.PhaseID;
-            cmbStage.SelectedItem = phase.Stage;
+            cmbStage.SelectedItem = phase.stage;
             txtDescription.Text = phase.Description;
             dtpPlannedStart.Value = phase.PlannedStart;
             dtpPlannedEnd.Value = phase.PlannedEnd;
             numPercent.Value = Math.Min(100, Math.Max(0, phase.PercentComplete));
         }
 
-        private ConstructionPhase ReadInputs()
+        private Phase ReadInputs()
         {
-            ConstructionSite site = cmbSite.SelectedItem as ConstructionSite;
+            Site site = cmbSite.SelectedItem as Site;
             if (site == null)
             {
                 MessageBox.Show("Please choose a site.");
@@ -110,20 +110,23 @@ namespace ConstructionAppClient
                 return null;
             }
 
-            return new ConstructionPhase
+            return new Phase
             {
-                SiteID = site.SiteID,
-                Stage = cmbStage.SelectedItem.ToString(),
+                site = site,
+                stage = (Phase.Stage)Enum.Parse(
+         typeof(Phase.Stage),
+         cmbStage.SelectedItem.ToString(),
+         true),
                 Description = txtDescription.Text.Trim(),
                 PlannedStart = dtpPlannedStart.Value.Date,
                 PlannedEnd = dtpPlannedEnd.Value.Date,
-                PercentComplete = (int)numPercent.Value
+                PercentComplete = numPercent.Value
             };
         }
 
         private async void btnAddPhase_Click(object sender, EventArgs e)
         {
-            ConstructionPhase phase = ReadInputs();
+            Phase phase = ReadInputs();
             if (phase == null) return;
 
             try
@@ -155,7 +158,7 @@ namespace ConstructionAppClient
                 return;
             }
 
-            ConstructionPhase phase = ReadInputs();
+            Phase phase = ReadInputs();
             if (phase == null) return;
             phase.PhaseID = selectedPhaseId;
 

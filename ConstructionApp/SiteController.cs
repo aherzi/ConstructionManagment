@@ -21,11 +21,21 @@ namespace ConstructionAppServer
             {
                 if (site.contractor == null || site.contractor.ContractorID <= 0)
                     return BadRequest("A valid contractor is required.");
+                if (site.owner == null || site.owner.OwnerID <= 0)
+                    return BadRequest("Select a property owner.");
                 if (string.IsNullOrWhiteSpace(site.SiteName) || string.IsNullOrWhiteSpace(site.Address))
                     return BadRequest("Site name and address are required.");
                 if (site.StartDate == default) site.StartDate = DateTime.Today;
                 if (site.DateCreated == default) site.DateCreated = DateTime.Now;
-                 bool pass=_siteService.AddSite(site);
+                bool pass;
+                try
+                {
+                    pass = _siteService.AddSite(site);
+                }
+                catch (ArgumentException ex)
+                {
+                    return BadRequest(ex.Message);
+                }
                 if (pass)
                 {
                     return Ok(site);

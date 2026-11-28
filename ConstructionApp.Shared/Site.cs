@@ -15,6 +15,7 @@ namespace ConstructionApp.Shared
         public DateTime EstimatedCompletionDate { get; set; }
         public Contractor contractor { get; set; }
         public List<Worker> workers { get; set; }
+        public Owner owner { get; set; }
         public Zoning zoning { get; set; }
         public enum Zoning
         {
